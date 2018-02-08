@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
+<meta charset="AINSI" />
 <link rel="stylesheet" href="Css/style.css" />
-<link rel="stylesheet" href="Css/Navigation.css" />
-<link rel="stylesheet" href="Css/Polices.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Ça passe quand</title>
@@ -38,7 +36,7 @@
 				</div>
 			</div>
 
-			<section>
+			<div>
 				<article>
 					<h1>Salut a tous</h1>
 					<p>COUCOU</p>
@@ -61,13 +59,15 @@
 						<img src="images/rss.png" alt="RSS" />
 					</p>
 				</aside>
-			</section>
+			</div>
 		</div>
 		<!-- Autre page -->
 		<!-- <div class="conteneur" id="divExemple"></div> -->
 				
 		<div class="conteneur" id="DivCalendrier">
-		
+			<?php
+			 require_once 'calendrier.html';
+		   ?>
 		</div>
 		
 		<script src="Js/navigation.js"></script>
