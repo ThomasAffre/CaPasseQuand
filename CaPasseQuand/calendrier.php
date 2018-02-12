@@ -1,37 +1,44 @@
 <?php
-
 $servername = "localhost";
 $username = "username";
 $password = "password";
 
 // Create connection
-$conn = mysqli_connect($servername,"root","");
+$conn = mysqli_connect($servername, "root", "");
 
 // Check connection
-if (!$conn) {
+if (! $conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+$JoursSemaine = array( "Lundi", "Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche");
+
 ?>
 
-<?php 
-$DateFirst = mktime(0, 0, 0, date("m")  , date("d")-intval(date("N")), date("Y"));
-// difference 86400 par jour  
-$strfirstDayWeek = date("d/m/Y",$DateFirst );
 
-$sql = "SELECT id, numEpisode, nomEpisode, heure FROM Episode WHERE Date = \'".$firstDayWeek."\'";
-?>
 
 
 
 <ul id="semaine">
+
+<?php
+$DateFirst = mktime(0, 0, 0, date("m"), date("d") - intval(date("N")), date("Y"));
+// difference 86400 par jour
+
+
+for ($i = 0; $i < 7; $i ++) {
+    
+    $strfirstDayWeek = date("d/m/Y", $DateFirst+($i*86400));
+    $sql = "SELECT id, numEpisode, nomEpisode, heure FROM Episode WHERE Date = \'" . $strfirstDayWeek . "\'";
+    ?>
+
 	<li class="journee">
 		<div id="bandeau">
 
 
 			<div class="DateComplete">
-				<p class="Date">01/12</p>
-				<p class="Jour">Lundi</p>
+				<p class="Date"><?php echo $strfirstDayWeek;?></p>
+				<p class="Jour"><?php echo $JoursSemaine[$i];?></p>
 			</div>
 			<div id="AllEpisode">
 				<div class="Episode">
@@ -68,5 +75,8 @@ $sql = "SELECT id, numEpisode, nomEpisode, heure FROM Episode WHERE Date = \'".$
 			</div>
 		</div>
 	</li>
-	
+	<?php
+}
+// finJour
+?>
 </ul>

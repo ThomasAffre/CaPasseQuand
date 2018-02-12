@@ -66,7 +66,7 @@
 				
 		<div class="conteneur" id="DivCalendrier">
 			<?php
-			 require_once 'calendrier.html';
+			 require_once 'calendrier.php';
 		   ?>
 		</div>
 		
