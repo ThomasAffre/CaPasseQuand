@@ -4,7 +4,8 @@
 <meta charset="AINSI" />
 <link rel="stylesheet" href="Css/style.css" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Ça passe quand</title>
 </head>
 
@@ -32,49 +33,44 @@
 			<div id="banniere_image">
 				<img src="images/banniere_got.png" alt="Logo" />
 				<div id="banniere_description">
-					Game of Thrones <a href="#" class="bouton_rouge">Voir le calendrier <img src="images/flecheblanchedroite.png" alt="" /></a>
+					Game of Thrones <a href="#" class="bouton_rouge">Voir le calendrier
+						<img src="images/flecheblanchedroite.png" alt="" />
+					</a>
 				</div>
 			</div>
 
 			<div>
-				<article>
-					<h1>Salut a tous</h1>
-					<p>COUCOU</p>
-					<p>COUCOU</p>
-					<p>COUCOU</p>
-				</article>
+					<article>
+						<h1>Salut a tous</h1>
+						<p>COUCOU</p>
+						<p>COUCOU</p>
+						<p>COUCOU</p>
+					</article>
 				<aside>
-					<h1>Série du moment</h1>
+					<h1>S�rie du moment</h1>
 					<img src="images/bulle.png" alt="" id="fleche_bulle" />
 					<p id="miniature">
 						<img src="images/miniature_got.jpg" />
 					</p>
 					<p>BLA BLA BLA</p>
 					<p>BLA BLA BLA</p>
-					<p>
-						<img src="images/facebook.png" alt="Facebook" />
-						<img src="images/twitter.png" alt="Twitter" />
-						<img src="images/vimeo.png" alt="Vimeo" />
-						<img src="images/flickr.png" alt="Flickr" />
-						<img src="images/rss.png" alt="RSS" />
-					</p>
 				</aside>
 			</div>
 		</div>
 		<!-- Autre page -->
 		<!-- <div class="conteneur" id="divExemple"></div> -->
-				
+
 		<div class="conteneur" id="DivCalendrier">
 			<?php
-			 require_once 'calendrier.php';
-		   ?>
+require_once 'calendrier.php';
+?>
 		</div>
-		
+
 		<script src="Js/navigation.js"></script>
-		
-		
+
+
 	</SECTION>
-	
+
 	<footer>
 		<div id="tweet">
 			<h1>Prochain épisode</h1>
