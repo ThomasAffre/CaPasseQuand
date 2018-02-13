@@ -1,13 +1,14 @@
 <?php
+$database = "capassequand";
 $servername = "localhost";
 $username = "username";
 $password = "password";
 
 // Create connection
-$conn = mysqli_connect($servername, "root", "");
+$conn = mysqli_connect($servername, "root", "",$database);
 
 // Check connection
-if (! $conn) {
+if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
@@ -22,14 +23,21 @@ $JoursSemaine = array( "Lundi", "Mardi","Mercredi","Jeudi","Vendredi","Samedi","
 <ul id="semaine">
 
 <?php
+$today =  mktime(0, 0, 0, date("m"), date("d"), date("Y"));
 $DateFirst = mktime(0, 0, 0, date("m"), date("d") - intval(date("N")), date("Y"));
 // difference 86400 par jour
 
 
 for ($i = 0; $i < 7; $i ++) {
+    $Date = $DateFirst+($i*86400);
+    $strfirstDayWeek = date("Y-m-d", $Date);
     
-    $strfirstDayWeek = date("d/m/Y", $DateFirst+($i*86400));
-    $sql = "SELECT id, numEpisode, nomEpisode, heure FROM Episode WHERE Date = \'" . $strfirstDayWeek . "\'";
+    $sql = "SELECT ep.numEpisode as Num, ep.nomEpisode as nomEp, ep.heureSortieEpisode as heure,
+                   s.numSaison as saison, s.synopsisSaison as cheminSaison, se.nom as serie
+              FROM episode ep 
+                JOIN saison s ON s.idSaison = ep.numSaison 
+                JOIN serie se ON se.idSerie = s.IdSerie  
+            WHERE dateSortieEpisode = '" . $strfirstDayWeek . "' Order by heure";
     ?>
 
 	<li class="journee">
@@ -37,41 +45,33 @@ for ($i = 0; $i < 7; $i ++) {
 
 
 			<div class="DateComplete">
-				<p class="Date"><?php echo $strfirstDayWeek;?></p>
+				<p class="Date"><?php echo date("d/m",$Date);?></p>
 				<p class="Jour"><?php echo $JoursSemaine[$i];?></p>
 			</div>
 			<div id="AllEpisode">
+			
+			<?php 
+			$result = mysqli_query($conn, $sql) ;
+			
+			if (mysqli_num_rows($result) > 0) {
+			    // output data of each row
+			    while($row = mysqli_fetch_assoc($result)) {
+			    ?>
 				<div class="Episode">
 					<ol class="puce">
-						<li class="heure">12h45</li>
+						<li class="heure"><?php echo substr($row["heure"],0,5);?></li>
 					</ol>
-					<p class="nomSerie">Game</p>
-					<p class="nomEpisode">Tartuffe a la plage</p>
-					<p class="numEpisode">S01E11</p>
-					<img src="images/miniature_got.jpg" class="Miniature_calendrier" />
+					<p class="nomSerie"><?php echo $row["serie"];?></p>
+					<p class="nomEpisode"><?php echo $row["nomEp"];?></p>
+					<p class="numEpisode"><?php echo "S".sprintf("%02d",$row["saison"])."E".sprintf("%02d",$row["Num"])?></p>
+					<img src="<?php echo $row["cheminSaison"];?>/image/M.jpg" class="Miniature_calendrier" />
 				</div>
 
-				<div class="Episode">
-					<ol class="puce">
-						<li class="heure">15h30</li>
-					</ol>
-					<p class="nomSerie">
-						test1 vvvvvvv<br />
-					</p>
-					<p class="nomEpisode">Ta</p>
-					<p class="numEpisode">S01E12</p>
-					<img src="images/miniature_got.jpg" class="Miniature_calendrier" />
-				</div>
-
-				<div class="Episode">
-					<ol class="puce">
-						<li class="heure">15h30</li>
-					</ol>
-					<p class="nomSerie">test2</p>
-					<p class="nomEpisode">Tartuffe a la récré</p>
-					<p class="numEpisode">S01E13</p>
-					<img src="images/miniature_got.jpg" class="Miniature_calendrier" />
-				</div>
+				<?php 
+			    }
+			}
+			
+			?>
 			</div>
 		</div>
 	</li>

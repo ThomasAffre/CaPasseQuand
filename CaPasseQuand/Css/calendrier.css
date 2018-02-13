@@ -4,10 +4,12 @@
 	display : table;
 	border-collapse:separate;
 	border-spacing:8px;
+	table-layout: fixed;
 }
 
 .journee{
 	display:table-cell;
+	width: 14%;
 }
 
 #bandeau
