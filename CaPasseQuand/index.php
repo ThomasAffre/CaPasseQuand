@@ -6,6 +6,8 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="Js/slider.js"></script>
+	
 <title>Ça passe quand</title>
 </head>
 
@@ -30,14 +32,9 @@
 	</header>
 	<SECTION>
 		<div class="conteneur" id="DivAccueil">
-			<div id="banniere_image">
-				<img src="images/banniere_got.png" alt="Logo" />
-				<div id="banniere_description">
-					Game of Thrones <a href="#" class="bouton_rouge">Voir le calendrier
-						<img src="images/flecheblanchedroite.png" alt="" />
-					</a>
-				</div>
-			</div>
+			<?php 
+			 require_once 'Banniere.php';
+			?>
 
 			<div>
 					<article>
