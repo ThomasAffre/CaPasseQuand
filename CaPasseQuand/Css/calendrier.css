@@ -111,6 +111,14 @@ top:-6px;
 	border-radius: 10%;
 }
 
+@media screen and (max-width: 640px)
+{
+	.Miniature_calendrier
+	{
+	display: none;
+	}
+	
+}
 
 
 

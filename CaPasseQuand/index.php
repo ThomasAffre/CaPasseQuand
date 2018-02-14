@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="AINSI" />
+<meta charset="utf-8" />
 <link rel="stylesheet" href="Css/style.css" />
 
 <script
@@ -47,7 +47,7 @@
 						<p>COUCOU</p>
 					</article>
 				<aside>
-					<h1>S�rie du moment</h1>
+					<h1>Série du moment</h1>
 					<img src="images/bulle.png" alt="" id="fleche_bulle" />
 					<p id="miniature">
 						<img src="images/miniature_got.jpg" />
@@ -72,12 +72,44 @@ require_once 'calendrier.php';
 	</SECTION>
 
 	<footer>
-		<div id="tweet">
-			<h1>Prochain épisode</h1>
-			<p>Tartuffe</p>
-			<p>Aujourd'hui a 17h05</p>
-		</div>
+	<?php
+$database = "capassequand";
+$servername = "localhost";
+$username = "username";
+$password = "password";
 
+// Create connection
+// $conn = mysqli_connect($servername, "root", "",$database);
+
+// Check connection
+// if (!$conn) {
+// die("Connection failed: " . mysqli_connect_error());
+// }
+$heure = date("H:i");
+$date = date("Y-m-d");
+$sql = "SELECT nomEpisode, heureSortieEpisode,se.nom as NomSerie
+              FROM episode ep
+              JOIN saison s ON s.idSaison = ep.numSaison 
+              JOIN serie se ON se.idSerie = s.IdSerie  
+            WHERE dateSortieEpisode = '" . $date . "' And heureSortieEpisode  > '" . $heure.":00'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    $row = mysqli_fetch_assoc($result)?>
+	
+		<div id="EpNext">
+			<h1>Prochain épisode</h1>
+			<p><?php echo $row["NomSerie"]." - ".$row["nomEpisode"]?></p>
+			<p>Aujourd'hui à <?php echo substr($row["heureSortieEpisode"],0,5)?></p>
+		</div>
+<?php
+} else {
+   echo" <div id=\"EpNext\">
+    <h1>Pas d'autre épisode Aujourd'hui</h1>
+		</div>";
+}
+?>
 	</footer>
 </body>
 </html>

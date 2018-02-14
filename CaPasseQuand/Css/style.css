@@ -78,11 +78,18 @@ header h2
 	
 	body
 	{
-		margin: auto;
+		margin-left: 2.5%;
 		margin-top: 10px;
 		width: 95%;
-		min-width: 640px;
+		min-width: 600px;
 	}
+	
+	.Miniature_calendrier
+	{
+	display: none;
+	}
+	
+	
 }
 
 
@@ -90,10 +97,10 @@ header h2
 {
 	body
 	{
-		margin: auto;
+		margin-left: 2.5%;
 		margin-top: 10px;
 		width: 95%;
-		min-width: 1000px ;
+		min-width: 1100px ;
 	}
 }
 
@@ -184,7 +191,7 @@ footer h1
 }
 
 
-#tweet
+#EpNext
 {
     width: 28%;
 }
