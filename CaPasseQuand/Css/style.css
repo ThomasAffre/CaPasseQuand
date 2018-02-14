@@ -73,18 +73,27 @@ header h2
 	#banniere_image
 	{
 		display: none;
+		
+	}
+	
+	body
+	{
+		margin: auto;
+		margin-top: 10px;
+		width: 95%;
+		min-width: 640px;
 	}
 }
 
 
-@media screen and (max-width: 860px)
+@media screen and (max-width: 1200px) and (min-width: 640px)
 {
 	body
 	{
 		margin: auto;
 		margin-top: 10px;
 		width: 95%;
-		min-width: 640px ;
+		min-width: 1000px ;
 	}
 }
 
