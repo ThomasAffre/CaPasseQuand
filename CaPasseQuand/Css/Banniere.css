@@ -6,14 +6,21 @@
 	box-shadow: 0px 4px 4px #1c1a19;
 	margin-bottom: 25px;
 	overflow: hidden;
-	max-width: 950px;
+	width: 950px;
+}
+
+#listeBanniere{
+	transition : left 1s;
 }
 
 #banniere_image ul {
+	position : absolute;
 	width: 300%;
 	height: 200px;
 	padding:0; margin:0;
     list-style: none;
+    z-index: -1;
+    
 }
 
 #banniere_image li {
@@ -49,18 +56,21 @@
 	font-size: 5em;
 	vertical-align: middle;
 	transition: background-color 1s;
+	z-index: 10;
 }
 
 .zone_fleche_slider:hover {
-	background-color: rgba(24, 24, 24, 1);
+	background-color: rgba(24, 24, 24, 1);	
 }
 
-.fleche_droite{
+#fleche_droite{
 	right: 0;
+	
 }
 
-.fleche_gauche{
+#fleche_gauche{
 	left: 0;
+	
 }
 
 .bouton_rouge {
