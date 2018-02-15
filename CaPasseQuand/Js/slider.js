@@ -6,6 +6,9 @@ $(document).ready(function(){
 		$("#listeBanniere").animate({
 			left:margin+950
 		})
+		var image = ((Math.abs(margin+950))/ 950)+1;
+		var noSerie = $("#listeBanniere > li:nth-child("+image+") img").attr("alt");
+		$("#banniere_description b").text(noSerie);
 	});
 });
 
@@ -16,7 +19,10 @@ $(document).ready(function(){
 		margin = parseInt(m,10);
 		$("#listeBanniere").animate({
 			left:margin-950
-		})//css("left",margin+950);
+		})
+		var image = ((Math.abs(margin-950))/ 950)+1;
+		var noSerie = $("#listeBanniere > li:nth-child("+image+") img").attr("alt");
+		$("#banniere_description b").text(noSerie);
 		
 	});
 });
