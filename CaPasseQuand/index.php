@@ -59,8 +59,8 @@
 
 		<div class="conteneur" id="DivCalendrier">
 			<?php
-require_once 'calendrier.php';
-?>
+                require_once 'calendrier.php';
+            ?>
 		</div>
 
 		<script src="Js/navigation.js"></script>

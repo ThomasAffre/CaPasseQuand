@@ -7,23 +7,37 @@
 	</div>
 	<div id="banniere_description">
 		<b>Game of Thrones</b>
-		 <a class="bouton_rouge">
-			Voir le calendrier 
-			<img src="images/flecheblanchedroite.png" alt="" />
-		</a>
 	</div>
-	<ul id="listeBanniere">
-
-	<li>
-		<img src="images/banniere_got.png" alt="Games of thrones" />
-	</li>
-	<li>
-		<img src="images/B.jpg" alt="Vikings" />
-	</li>
-	<li>
-		<img src="images/banniere_got.png" alt="Games of thrones" />
-	</li>
-</ul>
+	<?php  
+	$database = "capassequand";
+	$servername = "localhost";
+	$username = "username";
+	$password = "password";
+	
+	// Create connection
+	$conn = mysqli_connect($servername, "root", "",$database);
+	
+	// Check connection
+	if (!$conn) {
+	    die("Connection failed: " . mysqli_connect_error());
+	}
+	
+	$rqt_banniere = "SELECT num,nom,chemin FROM banniereinfo";
+	$result = mysqli_query($conn, $rqt_banniere) ;
+	
+	if (mysqli_num_rows($result) > 0) {
+	    // output data of each row
+	?>
+	<ul id="listeBanniere" style="width:<?php echo mysqli_num_rows($result) ?>00%" >
+	<?php 
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "<li>
+		              <img src=\"".$row["chemin"]."/image/B.jpg\" alt=\"".$row["nom"]."\" />
+	               </li>";
+        }
+	}
+    ?>
+	</ul>
 </div>
 <?php
 ?>

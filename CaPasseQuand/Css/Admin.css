@@ -1,0 +1,104 @@
+@import url("style.css");
+
+titreGroupe
+{
+    font-family: Dayrom, serif;
+    font-size: 1.1em;
+    margin-top: 0px;
+    font-weight: normal;
+}
+
+
+titreEntete
+{
+    font-family: Dayrom, serif;
+    font-size: 12px;
+    margin-top: 0px;
+    font-weight: normal;
+}
+/* Navigation */
+
+
+
+/* Bannière */
+
+.modifPageAccueil{
+
+border:solid 2px;
+box-shadow:5px 5px 3px grey;
+padding:10px 5px;
+
+}
+
+.textArea{
+margin-top:10px;
+width:80%;
+
+}
+
+.ajoutSerie{
+
+border:solid 2px;
+box-shadow:5px 5px 3px grey;
+padding:10px 5px;
+width:25%;
+
+}
+
+.ajoutSaison{
+
+border:solid 2px;
+box-shadow:5px 5px 3px grey;
+padding:10px 5px;
+width:25%;
+position: relative;
+
+
+}
+
+.ajoutEpisode{
+
+border:solid 2px;
+box-shadow:5px 5px 3px grey;
+padding:10px 5px;
+width:25%;
+position: relative;
+
+
+}
+
+
+.ajoutActeurGenre{
+
+border:solid 2px;
+box-shadow:5px 5px 3px grey;
+padding:10px 5px;
+position: relative;
+
+
+}
+
+#AjoutElement{
+	display:table;
+	border-collapse: separate;
+  border-spacing: 10px;
+
+  
+  
+	
+}
+
+.elementTableau{
+	display: table-cell;
+	margin-left: 6px;
+}
+
+textarea {
+	resize: none;
+}
+
+
+/* Corps */
+
+
+
