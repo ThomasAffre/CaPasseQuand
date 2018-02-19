@@ -21,6 +21,8 @@
 	
 	$rqt_banniere = "SELECT num,nom,chemin FROM banniereinfo";
 	$rqt_serie = "SELECT idSerie as Id,nom FROM serie";
+	$rqt_Acceuil = "SELECT idSerie as Id,message FROM accueil";
+	
 	?>
     
     <body>
@@ -54,16 +56,16 @@
 				<form action="">
 				<?php 
 				$result = mysqli_query($conn, $rqt_banniere) ;
-				$result_serie = mysqli_query($conn, $rqt_serie);
 				
 	            if (mysqli_num_rows($result) > 0) {
 	             // output data of each row
-                $i = 1;
+                
                 while($row = mysqli_fetch_assoc($result)) {
-                    ?>
-                    <select name="bandeau<?php echo $i;?>">
                     
-                    <?php 
+                    echo "<select name=\"bandeau".$row["num"]."\">";
+                    
+                     
+                    $result_serie = mysqli_query($conn, $rqt_serie);
                     
                     if (mysqli_num_rows($result_serie) > 0) {
                         while($row_serie = mysqli_fetch_assoc($result_serie)) {
@@ -75,27 +77,52 @@
                                 echo $row_serie["nom"]."</option>";
                         }
                     }
-                   $i++;
+                    echo "</select>";
                 }
+               
 	}
-    ?>
+    
 				
 				
-				
-					</select>
-				
-				<br>
-				
-				<titreEntete>Modification message accueil<br></titreEntete>
-					<textarea name="descriptAccueil" class="textArea">Message Page d'accueil</textarea>
-				<br>
-				
-				<titreEntete>Modification Miniature et Synopsis Série du moment<br></titreEntete>	
+			$result_accueil = mysqli_query($conn, $rqt_Acceuil);
+			if (mysqli_num_rows($result_accueil) > 0) {
+			    $row =  mysqli_fetch_assoc($result_accueil);
+			
+			
+					
+	?>
+					<br>
+
+					<titreEntete>Modification message accueil<br>
+					</titreEntete>
+					<textarea name="descriptAccueil" class="textArea"><?php echo $row["message"]?></textarea>
+					<br>
+
+					<titreEntete>Modification Miniature et Synopsis Série du moment<br>
+					</titreEntete>
 					<select name="miniature">
-						<option value="" disabled selected="selected">Modification Miniature et Synopsis</option>
+                    
+                     <?php 
+                    $result_serie = mysqli_query($conn, $rqt_serie);
+                    
+                    if (mysqli_num_rows($result_serie) > 0) {
+                        while($row_serie = mysqli_fetch_assoc($result_serie)) {
+                                echo "<option value=\"".$row_serie["Id"]."\"";
+                                if($row["Id"]==$row_serie["Id"]){
+                                    echo "selected=\"selected\"";
+                                }
+                                echo">";
+                                echo $row_serie["nom"]."</option>";
+                        }
+                    }
+                   
+                
+					?>
 					</select>
-				<br>	
-				
+					<br>
+			<?php 
+			}
+			?>
 				<input type="submit" value="Valider">	
 				</form>
 				

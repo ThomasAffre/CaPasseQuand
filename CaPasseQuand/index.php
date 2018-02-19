@@ -1,4 +1,23 @@
 <!DOCTYPE html>
+<?php 
+$database = "capassequand";
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = mysqli_connect($servername, "root", "",$database);
+
+// Check connection
+if (!$conn) {
+ die("Connection failed: " . mysqli_connect_error());
+}
+
+$rqt_Acceuil = "SELECT a.idSerie as Id,message,s.synopsisSerie as syno 
+                FROM accueil a 
+                JOIN serie s ON s.idSerie = a.idSerie";
+
+?>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -38,22 +57,30 @@
 
 			<div>
 					<article>
-						<h1>Salut a tous</h1>
-						<p>COUCOU</p>
-						<p>COUCOU</p>
-						<p>COUCOU</p>
+						<p>
+						<?php
+			$result_accueil = mysqli_query($conn, $rqt_Acceuil);
+			if (mysqli_num_rows($result_accueil) > 0) {
+			    $row =  mysqli_fetch_assoc($result_accueil);
+			    echo $row["message"];
+			
+			    ?>
+						</p>
 					</article>
 				<aside>
+				<?php 
+				$file = fopen($row["syno"]."/texte/saison.txt", 'r+');
+				?>
 					<h1>Série du moment</h1>
 					<img src="images/bulle.png" alt="" id="fleche_bulle" />
 					<p id="miniature">
-						<img src="images/miniature_got.jpg" />
+						<img src="<?php echo $row["syno"];?>/image/M.jpg" />
 					</p>
-					<p>BLA BLA BLA</p>
-					<p>BLA BLA BLA</p>
+					<p><?php echo fgets($file,150);?>...</p>
 				</aside>
 			</div>
 		</div>
+		<?php fclose($file); } ?>
 		<!-- Autre page -->
 		<!-- <div class="conteneur" id="divExemple"></div> -->
 
@@ -70,18 +97,7 @@
 
 	<footer>
 	<?php
-$database = "capassequand";
-$servername = "localhost";
-$username = "username";
-$password = "password";
 
-// Create connection
-// $conn = mysqli_connect($servername, "root", "",$database);
-
-// Check connection
-// if (!$conn) {
-// die("Connection failed: " . mysqli_connect_error());
-// }
 $heure = date("H:i");
 $date = date("Y-m-d");
 $sql = "SELECT nomEpisode, heureSortieEpisode,se.nom as NomSerie
