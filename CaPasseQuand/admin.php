@@ -5,6 +5,23 @@
         <link rel="stylesheet" href="Css/Admin.css" />
         <title>Ça passe quand</title>
     </head>
+    <?php
+    $database = "capassequand";
+	$servername = "localhost";
+	$username = "username";
+	$password = "password";
+	
+	// Create connection
+	$conn = mysqli_connect($servername, "root", "",$database);
+	
+	// Check connection
+	if (!$conn) {
+	    die("Connection failed: " . mysqli_connect_error());
+	}
+	
+	$rqt_banniere = "SELECT num,nom,chemin FROM banniereinfo";
+	$rqt_serie = "SELECT idSerie as Id,nom FROM serie";
+	?>
     
     <body>
         <div id="bloc_page">
@@ -33,22 +50,38 @@
 						
 			<div class="modifPageAccueil">
 				<titreGroupe>Modification de la page d'accueil<br></titreGroupe>
-				
 				<titreEntete>Modification Carroussel</titreEntete>	
 				<form action="">
-					<select name="bandeau1">
-						<option value="" disabled selected="selected">Modification première image bandeau</option>
-					
-					</select>
-					
-					<select name="bandeau2">
-						<option value="" disabled selected="selected">Modification deuxième image bandeau</option>
-					
-					</select>
-					
-					<select name="bandeau3">
-						<option value="" disabled selected="selected">Modification troisième image bandeau</option>
-					
+				<?php 
+				$result = mysqli_query($conn, $rqt_banniere) ;
+				$result_serie = mysqli_query($conn, $rqt_serie);
+				
+	            if (mysqli_num_rows($result) > 0) {
+	             // output data of each row
+                $i = 1;
+                while($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                    <select name="bandeau<?php echo $i;?>">
+                    
+                    <?php 
+                    
+                    if (mysqli_num_rows($result_serie) > 0) {
+                        while($row_serie = mysqli_fetch_assoc($result_serie)) {
+                                echo "<option value=\"".$row_serie["Id"]."\"";
+                                if($row["nom"]==$row_serie["nom"]){
+                                    echo "selected=\"selected\"";
+                                }
+                                echo">";
+                                echo $row_serie["nom"]."</option>";
+                        }
+                    }
+                   $i++;
+                }
+	}
+    ?>
+				
+				
+				
 					</select>
 				
 				<br>
@@ -130,7 +163,7 @@
 					<textarea name="AjoutNumeroEpisode" class="textArea">exemple: 1</textarea>
 					<br>
 					
-					<titreEntete>Numéro de saisonbr></titreEntete>
+					<titreEntete>Numéro de saison<br></titreEntete>
 					<textarea name="AjoutNumSaisonEpisode" class="textArea">exemple: GT01</textarea>
 					<br>
 					
@@ -181,6 +214,7 @@
 					
 					<input type="submit" value="Valider">	
 				</form>
+			</div>
 			</div>
 			</div>
     </body>
