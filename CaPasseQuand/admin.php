@@ -204,7 +204,7 @@ function changeSerie(str) {
 			<div class="ajoutEpisode elementTableau">
 				<titreGroupe>Ajout Episode<br></titreGroupe>
 				
-				<form action="">		
+				<form action="AjoutEpisode.php" method="post">		
 					<titreEntete>Série<br></titreEntete>
 					<select name="SaisonSerie" onclick="changeSerie(this.value)">
 				

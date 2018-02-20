@@ -1,7 +1,7 @@
 <?php
 require_once 'ConnexionBd.php';
 $rqt_InsertSaison = mysqli_prepare($conn, "INSERT INTO saison VALUES (?, ?, ?, ?)");
-$rqt_saison = mysqli_prepare($conn, "SELECT nom FROM serie WHERE IdSerie = ?");
+$rqt_saison = mysqli_prepare($conn, "SELECT s.nom FROM serie s JOIN saison sa ON sa.IdSerie = s.idSerie WHERE s.IdSerie = ?");
 
 if(isset($_POST["SaisonSerie"])){
         if(isset($_POST["SynopsisSaison"])){   
@@ -17,7 +17,7 @@ if(isset($_POST["SaisonSerie"])){
             $numSais = sprintf("%02d",$nbSais+1);
             
             //idSaison
-            $idSaison = $serie.$numSais;
+            $idSaison = $serie."S".$numSais;
             
             //SynopsisSaison
             mysqli_stmt_bind_result($rqt_saison, $nom);
@@ -27,11 +27,10 @@ if(isset($_POST["SaisonSerie"])){
             $file = fopen($strChemin."/texte/saison".$numSais.".txt", "x+");
             fputs($file, $_POST["SynopsisSaison"]);
             fclose($file);
-            $chemin =$strChemin."/texte/saison".$numSais.".txt";
             
             mysqli_stmt_bind_param($rqt_InsertSaison, "ssss", $idSaison,$strChemin,$numSais,$serie);
             mysqli_stmt_execute($rqt_InsertSaison);
-            //header('Location:admin.php');
+            header('Location:admin.php');
             
         }
 }
