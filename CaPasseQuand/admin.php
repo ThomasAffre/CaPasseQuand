@@ -134,7 +134,7 @@
 			<div class="ajoutSerie elementTableau" >
 				<titreGroupe>Ajout Série<br></titreGroupe>
 				
-				<form action="AjoutElement.php">
+				<form action="AjoutElement.php" method="post">
 					
 					<titreEntete>Nom Série<br></titreEntete>
 					<textarea name="NomSerie" class="textArea" placeholder="ex : Vikings"></textarea>
