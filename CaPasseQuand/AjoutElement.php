@@ -37,10 +37,14 @@ if(isset($_POST["NomSerie"])){
             mkdir($strChemin."/texte" ,0777);
             $file = fopen($strChemin."/texte/serie.txt", "x+");
             fputs($file, $_POST["SynopsisSerie"]);
+            fclose($file);
+            
             $chemin =$strChemin."/texte/serie.txt";
             
             mysqli_stmt_bind_param($rqt_InsertSerie, "ssss", $_POST["NomSerie"], $_POST["Realisateur"], $chemin, $Id);
             mysqli_stmt_execute($rqt_InsertSerie);
+            
+            header('Location:admin.php');
             
         }
     }

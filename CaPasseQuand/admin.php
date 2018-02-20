@@ -4,6 +4,23 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="Css/Admin.css" />
         <title>Ça passe quand</title>
+        <script>
+function changeSerie(str) {
+    if (str.length == 0) { 
+        document.getElementById("choixSaison").innerHTML = "";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("choixSaison").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "selectSaison.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
+</script>
     </head>
     <?php
     $database = "capassequand";
@@ -157,17 +174,26 @@
 			<div class="ajoutSaison elementTableau">
 				<titreGroupe>Ajout Saison<br></titreGroupe>
 				
-				<form action="">
-					<titreEntete>Identifiant Saison<br></titreEntete>
-					<textarea name="AjoutIdSerie" class="textArea">exemple: Vikings VI</textarea>
-					<br>				
+				<form action="AjoutSaison.php" method="post">
+					<select name="SaisonSerie">
 				
-					<titreEntete>Numéro de saison<br></titreEntete>
-					<textarea name="AjoutNumeroSaison" class="textArea">Kurt Sutter</textarea>
+				 	<?php 
+                    $result_serie = mysqli_query($conn, $rqt_serie);
+                    
+                    if (mysqli_num_rows($result_serie) > 0) {
+                        while($row_serie = mysqli_fetch_assoc($result_serie)) {
+                                echo "<option value=\"".$row_serie["Id"]."\">";
+                                echo $row_serie["nom"]."</option>";
+                        }
+                    }
+                   
+                
+					?>
+					</select>
 					<br>
 					
 					<titreEntete>Synopsis Saison<br></titreEntete>
-					<textarea name="AjoutSynopsisSaison" class="textArea">Synopsis Série</textarea>
+					<textarea name="SynopsisSaison" class="textArea" placeholder="Synopsis Saison"></textarea>
 					<br>
 					
 					
@@ -178,33 +204,43 @@
 			<div class="ajoutEpisode elementTableau">
 				<titreGroupe>Ajout Episode<br></titreGroupe>
 				
-				<form action="">
-					<titreEntete>Identifiant Episode<br></titreEntete>
-					<textarea name="AjoutIdEpisode" class="textArea">exemple: GT01E01</textarea>
-					<br>				
+				<form action="">		
+					<titreEntete>Série<br></titreEntete>
+					<select name="SaisonSerie" onclick="changeSerie(this.value)">
 				
-					<titreEntete>Numéro d'épisode<br></titreEntete>
-					<textarea name="AjoutNumeroEpisode" class="textArea">exemple: 1</textarea>
+				 	<?php 
+                    $result_serie = mysqli_query($conn, $rqt_serie);
+                    
+                    if (mysqli_num_rows($result_serie) > 0) {
+                        while($row_serie = mysqli_fetch_assoc($result_serie)) {
+                                echo "<option value=\"".$row_serie["Id"]."\">";
+                                echo $row_serie["nom"]."</option>";
+                        }
+                    }
+                   
+                
+					?>
+					</select>
 					<br>
-					
+										
 					<titreEntete>Numéro de saison<br></titreEntete>
-					<textarea name="AjoutNumSaisonEpisode" class="textArea">exemple: GT01</textarea>
+					<select id="choixSaison" name="NumSaison"></select>
 					<br>
 					
 					<titreEntete>Nom Episode<br></titreEntete>
-					<textarea name="AjoutNomEpisode" class="textArea">exemple: Winter is coming</textarea>
+					<textarea name="NomEpisode" class="textArea" placeholde="exemple: Winter is coming"></textarea>
 					<br>
 					
 					<titreEntete>Synopsis Episode<br></titreEntete>
-					<textarea name="AjoutSynopsisEpisode" class="textArea">Synopsis</textarea>
+					<textarea name="SynopsisEpisode" class="textArea"  placeholde="Synopsis"></textarea>
 					<br>
 					
 					<titreEntete>Date  Episode<br></titreEntete>
-					<textarea name="AjoutDateEpisode" class="textArea">2018-12-23</textarea>
+					<input type="date" name="DateEpisode" class="textArea" max="31/12/2100"></input>
 					<br>
 					
 					<titreEntete>Heure Episode<br></titreEntete>
-					<textarea name="AjoutHeureEpisode" class="textArea">exemple: 09:00:00</textarea>
+					<input type="time" name="HeureEpisode" class="textArea"></input>
 					<br>
 					
 					<input type="submit" value="Valider">	
