@@ -53,13 +53,13 @@
 			<div class="modifPageAccueil">
 				<titreGroupe>Modification de la page d'accueil<br></titreGroupe>
 				<titreEntete>Modification Carroussel</titreEntete>	
-				<form action="">
+				<form action="ChangeAccueil.php" method="post">
 				<?php 
 				$result = mysqli_query($conn, $rqt_banniere) ;
 				
 	            if (mysqli_num_rows($result) > 0) {
 	             // output data of each row
-                
+	                echo "<input type=\"hidden\" name=\"NbBandeau\" value=\"".mysqli_num_rows($result)."\"/> ";
                 while($row = mysqli_fetch_assoc($result)) {
                     
                     echo "<select name=\"bandeau".$row["num"]."\">";
@@ -134,21 +134,18 @@
 			<div class="ajoutSerie elementTableau" >
 				<titreGroupe>Ajout Série<br></titreGroupe>
 				
-				<form action="">
-					<titreEntete>Identifiant série<br></titreEntete>
-					<textarea name="AjoutIdSerie" class="textArea">exemple: Vikings VI</textarea>
-					<br>
+				<form action="AjoutElement.php">
 					
 					<titreEntete>Nom Série<br></titreEntete>
-					<textarea name="AjoutNomSerie" class="textArea">Vikings</textarea>
+					<textarea name="NomSerie" class="textArea" placeholder="ex : Vikings"></textarea>
 					<br>
 					
 					<titreEntete>Réalisateur<br></titreEntete>
-					<textarea name="AjoutRealisateur" class="textArea">Kurt Sutter</textarea>
+					<textarea name="Realisateur" class="textArea" placeholder="Kurt Sutter"></textarea>
 					<br>
 					
 					<titreEntete>Synopsis Série<br></titreEntete>
-					<textarea name="AjoutSynopsisSerie" class="textArea">Synopsis Série</textarea>
+					<textarea name="SynopsisSerie" class="textArea" placeholder="Synopsis Série"></textarea>
 					<br>
 					
 					
