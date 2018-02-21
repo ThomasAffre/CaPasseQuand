@@ -38,6 +38,7 @@ function changeSerie(str) {
 	
 	$rqt_banniere = "SELECT num,nom,chemin FROM banniereinfo";
 	$rqt_serie = "SELECT idSerie as Id,nom FROM serie";
+	$rqt_genre = "SELECT nomGenre FROM genre";
 	$rqt_Acceuil = "SELECT idSerie as Id,message FROM accueil";
 	
 	?>
@@ -66,7 +67,12 @@ function changeSerie(str) {
 			<div id="">
                 
             <h1>Interface administrateur</h1>
-						
+			<?php 
+			if(isset($_GET["Erreur"])){
+			    echo "<h1 style=\"color:red\">".$_GET["Erreur"]."</h2>";
+			}
+			
+			?>	
 			<div class="modifPageAccueil">
 				<titreGroupe>Modification de la page d'accueil<br></titreGroupe>
 				<titreEntete>Modification Carroussel</titreEntete>	
@@ -165,6 +171,21 @@ function changeSerie(str) {
 					<textarea name="SynopsisSerie" class="textArea" placeholder="Synopsis Série"></textarea>
 					<br>
 					
+					<titreEntete>Genre :</titreEntete>
+					<select name="Genre">
+                    
+                     <?php 
+                     $result_genre = mysqli_query($conn, $rqt_genre);
+                    
+                     if (mysqli_num_rows($result_genre) > 0) {
+                         while($row_genre = mysqli_fetch_assoc($result_genre)) {
+                             echo "<option value=\"".$row_genre["nomGenre"]."\">".$row_genre["nomGenre"]."</option>";
+                        }
+                    }
+                   
+                
+					?>
+					</select>
 					
 					<input type="submit" value="Valider">	
 				</form>
@@ -282,6 +303,15 @@ function changeSerie(str) {
 					<br>
 					
 					<input type="submit" value="Valider">	
+				</form>
+				<br/>
+				
+				<titreGroupe>Ajout Genre</titreGroupe>
+				<br>
+				<form action="AjoutGenre.php" method="post">				
+					<input type="text" name="genre"/>
+					<input type="submit" value="Valider">	
+					
 				</form>
 			</div>
 			</div>

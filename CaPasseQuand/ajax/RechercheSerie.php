@@ -2,8 +2,8 @@
 require_once '../ConnexionBd.php';
 $rqt_saison = mysqli_prepare($conn, "SELECT Distinct s.IdSerie as idSerie, s.nom as nom, s.realisateur as realisateur, s.synopsisSerie as syno
                                      FROM serie s 
-                                     Join saison sa ON sa.IdSerie = s.idSerie 
-                                     Join episode e ON sa.idSaison = e.numSaison 
+                                     left outer Join saison sa ON sa.IdSerie = s.idSerie 
+                                     left outer Join episode e ON sa.idSaison = e.numSaison 
                                      Where UPPER(s.nom) Like UPPER(?) 
                                         OR UPPER(e.nomEpisode) Like UPPER(?)");
 

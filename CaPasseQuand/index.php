@@ -70,7 +70,7 @@ $rqt_Acceuil = "SELECT a.idSerie as Id,message,s.synopsisSerie as syno
 					</article>
 				<aside>
 				<?php 
-				$file = fopen($row["syno"]."/texte/saison.txt", 'r+');
+				$file = fopen($row["syno"]."/texte/serie.txt", 'r+');
 				?>
 					<h1>Série du moment</h1>
 					<img src="images/bulle.png" alt="" id="fleche_bulle" />

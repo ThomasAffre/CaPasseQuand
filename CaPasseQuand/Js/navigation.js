@@ -22,4 +22,9 @@ $(document).ready(function(){
 		jQuery('.conteneur').slideUp("fast");
 		jQuery('#DivRecherche').delay("fast").slideDown("fast");
 	});
+	
+	jQuery('.btnRecherche').click(function () {
+		jQuery('#DivResultat').slideUp("fast");
+		jQuery('#DivResultat').delay("slow").slideDown(1000);
+	});
 }); 
