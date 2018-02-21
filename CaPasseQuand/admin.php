@@ -232,7 +232,7 @@ function changeSerie(str) {
 					<br>
 					
 					<titreEntete>Synopsis Episode<br></titreEntete>
-					<textarea name="SynopsisEpisode" class="textArea"  placeholde="Synopsis"></textarea>
+					<textarea name="SynopsisEpisode" class="textArea"  placeholder="Synopsis"></textarea>
 					<br>
 					
 					<titreEntete>Date  Episode<br></titreEntete>
@@ -250,27 +250,36 @@ function changeSerie(str) {
 			<div class="ajoutActeurGenre elementTableau">
 				<titreGroupe>Ajout Acteur & Genre<br></titreGroupe>
 				
-				<form action="">
-					<titreEntete>Identifiant Acteur<br></titreEntete>
-					<textarea name="AjoutIdEpisode" class="textArea">exemple: EC01</textarea>
-					<br>				
-				
+				<form action="AjoutActeur.php" method="post">				
 					<titreEntete>Nom Acteur<br></titreEntete>
-					<textarea name="AjoutNomActeur" class="textArea">exemple: Clarke</textarea>
+					<textarea name="NomActeur" class="textArea" placeholder="exemple: Clarke"></textarea>
 					<br>
 					
 					<titreEntete>Prénom Acteur<br></titreEntete>
-					<textarea name="AjoutPrénomActeur" class="textArea">exemple: Emilia</textarea>
+					<textarea name="PrenomActeur" class="textArea"placeholder="exemple: Emilia"></textarea>
 					<br>
 					
 					<titreEntete>Date de naissance<br></titreEntete>
-					<textarea name="AjoutDateActeur" class="textArea">exemple: 1986-10-23</textarea>
+					<input type="date" name="DateNais" class="textArea" max="31/12/2009"></input>
 					<br>
 					
 					<titreEntete>Série joué<br></titreEntete>
-					<textarea name="AjoutLienActeurSerie" class="textArea">exemple: GT(identifiant série)</textarea>
+					<select name="RoleSerie">
+				
+				 	<?php 
+                    $result_serie = mysqli_query($conn, $rqt_serie);
+                    
+                    if (mysqli_num_rows($result_serie) > 0) {
+                        while($row_serie = mysqli_fetch_assoc($result_serie)) {
+                                echo "<option value=\"".$row_serie["Id"]."\">";
+                                echo $row_serie["nom"]."</option>";
+                        }
+                    }
+                   
+                
+					?>
+					</select>					
 					<br>
-					
 					
 					<input type="submit" value="Valider">	
 				</form>

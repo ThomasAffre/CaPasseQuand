@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 require_once 'ConnexionBd.php';
 $rqt_InsertSerie = mysqli_prepare($conn, "INSERT INTO serie VALUES (?, ?, ?, ?)");
 $rqt_Serie = mysqli_prepare($conn,"SELECT IdSerie FROM serie WHERE IdSerie=?");
@@ -49,5 +45,6 @@ if(isset($_POST["NomSerie"])){
         }
     }
 }
+header('Location:admin.php');
 
 ?>

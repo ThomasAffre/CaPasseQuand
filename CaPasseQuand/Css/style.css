@@ -2,6 +2,8 @@
 @import url('Navigation.css');
 @import url('Banniere.css');
 @import url('calendrier.css');
+@import url('contact.css');
+@import url('recherche.css');
 
 /* Eléments principaux de la page */
 
@@ -129,7 +131,7 @@ header h2
 section
 {
     display: flex;
-    width:inherit;
+    width:100%;
     margin:auto;
     margin-bottom: 20px;
     

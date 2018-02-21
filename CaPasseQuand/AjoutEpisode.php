@@ -47,6 +47,9 @@ if(isset($_POST["NumSaison"])){
     }
 }
 
+header('Location:admin.php');
+
+
 
 
 ?>

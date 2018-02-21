@@ -1,0 +1,34 @@
+/* Corps */
+
+.contact{
+
+border:solid 2px;
+box-shadow:5px 5px 3px grey;
+padding:10px 5px;
+width:100%;
+margin:auto;
+margin-top:30px;
+
+}
+
+h2
+{
+    font-family: cac_champagneregular ,Arial, serif;
+    font-size: 2.5em;
+    font-weight: normal;
+    margin: 0 0 0 10px;
+}
+
+h3
+{
+    font-family: cac_champagneregular ,Arial, serif;
+    font-size: 2em;
+    font-weight: normal;
+    margin: 0 0 0 10px;
+}
+
+.contact img {
+float:left;
+margin-right:3px;
+
+}

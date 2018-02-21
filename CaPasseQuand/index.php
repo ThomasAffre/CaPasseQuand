@@ -26,6 +26,7 @@ $rqt_Acceuil = "SELECT a.idSerie as Id,message,s.synopsisSerie as syno
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="Js/slider.js"></script>
+	<script type="text/javascript" src="ajax/recherche.js"></script>
 	
 <title>Ça passe quand</title>
 </head>
@@ -42,10 +43,10 @@ $rqt_Acceuil = "SELECT a.idSerie as Id,message,s.synopsisSerie as syno
 
 		<nav>
 			<ul>
-				<li id="Btn_Accueil"><a href="#">Accueil</a></li>
-				<li><a id="Btn_Calendrier" href="#">Calendrier</a></li>
-				<li><a href="#">Recherche</a></li>
-				<li><a href="#">Contact</a></li>
+				<li id="Btn_Accueil"><a>Accueil</a></li>
+				<li id="Btn_Calendrier"><a>Calendrier</a></li>
+				<li id="Btn_Recherche"><a>Recherche</a></li>
+				<li id="Btn_Contact"><a>Contact</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -87,6 +88,18 @@ $rqt_Acceuil = "SELECT a.idSerie as Id,message,s.synopsisSerie as syno
 		<div class="conteneur" id="DivCalendrier">
 			<?php
                 require_once 'calendrier.php';
+            ?>
+		</div>
+
+		<div class="conteneur" id="DivRecherche">
+			<?php
+                require_once 'recherche.php';
+            ?>
+		</div>
+
+		<div class="conteneur" id="DivContact">
+			<?php
+                require_once 'contact.html';
             ?>
 		</div>
 
