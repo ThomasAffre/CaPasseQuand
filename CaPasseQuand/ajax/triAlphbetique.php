@@ -16,9 +16,10 @@ if (mysqli_num_rows($resultSelect) > 0) {
         $file = fopen("../".$row["syno"]."/texte/serie.txt", 'r+');
         $Series .= "<div class=\"resultat\">
             	<img alt=\"".$row["nom"]."\" src=\"".$img."\">
+                <div class=\"information\">
             	<h2>".$row["nom"]."</h2>
             	<p class=\"realisateur\"><b>Réalisateur : </b>".$row["realisateur"]."</p>
-            	<p class=\"synopsis\">".fgets($file,150)."...</p>
+            	<p class=\"synopsis\">".fgets($file,500)."...</p></div>
             </div>";
         fclose($file);
         }

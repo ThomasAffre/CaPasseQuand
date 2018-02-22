@@ -23,7 +23,7 @@ if (mysqli_num_rows($resultSelect) > 0) {
             	<div class=\"information\">
                 <h2>".$row["nom"]."</h2>
             	<p class=\"realisateur\"><b>Réalisateur : </b>".$row["realisateur"]."</p>
-            	<p class=\"synopsis\">".fgets($file,150)."...</p></div>
+            	<p class=\"synopsis\">".fgets($file,500)."...</p></div>
             </div>";
         fclose($file);
     }

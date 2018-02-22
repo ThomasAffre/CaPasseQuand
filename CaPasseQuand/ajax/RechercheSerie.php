@@ -24,9 +24,10 @@ if ($q !== "") {
             
             $Series .= "<div class=\"resultat\">
             	<img alt=\"".$nom."\" src=\"".$img."\">
-            	<h2>".$nom."</h2>
+            	<div class=\"information\">
+                <h2>".$nom."</h2>
             	<p class=\"realisateur\"><b>Réalisateur : </b>".$realisateur."</p>
-            	<p class=\"synopsis\">".fgets($file,150)."...</p>
+            	<p class=\"synopsis\">".fgets($file,500)."...</p></div>
             </div>";
             
             fclose($file);
